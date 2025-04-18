@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Secure Vault</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="{{url_for('static',filename='style-insert.css')}}"
+    />
+  </head>
+  <body>
+    <nav>
+      <h2>SECURE VAULT</h2>
+      <h2>About Us</h2>
+    </nav>
+    <div class="main">
+      <div class="sidebar">
+        <ul>
+          <li><a href="{{url_for('vault')}}">Vault</a></li>
+          <li><a href="{{url_for('insert')}}">Insert Password</a></li>
+          <li><a href="{{url_for('generator')}}">Generator</a></li>
+          <li><a href="{{url_for('logout')}}">Logout</a></li>
+        </ul>
+        <div class="sidebar-footer">
+          <img
+            src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+            alt="Profile Picture"
+          />
+          <h2>{{session["username"]}}</h2>
+        </div>
+      </div>
+      <div class="content">
+        <div class="insert">
+          <div class="insert-element">
+            <h2>Insert The Data</h2>
+            <form action="/insert" method="post" autocomplete="off">
+              <div class="input-element">
+                <label for="Websitename">Website Name</label>
+                <input
+                  type="text"
+                  name="Websitename"
+                  id="Websitename"
+                  required
+                />
+              </div>
+              <div class="input-element">
+                <label for="email">Email</label>
+                <input type="text" name="email" id="email" required />
+              </div>
+              <div class="input-element">
+                <label for="Websitename">Password</label>
+                <input
+                  type="text"
+                  name="password"
+                  id="password"
+                  minlength="8"
+                  required
+                />
+                <button id="generator" onclick="generatepassword(event)">
+                  Generator
+                </button>
+              </div>
+              <div class="input-element">
+                <button type="submit">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script lang="javascript">
+      function generatepassword(event){
+        event.preventDefault();
+        fetch("/generator_password").then(Response => Response.json()).then(data =>{
+          document.getElementById("password").value=data.password
+        })
+      }
+    </script>
+  </body>
+</html>

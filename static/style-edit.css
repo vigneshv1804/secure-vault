@@ -1,0 +1,238 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+  overflow-x: hidden;
+  background-color: #f9fafb;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 65px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #eaeaea;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 32px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+}
+
+nav > h2 {
+  color: #2563eb;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  font-size: clamp(16px, 2vw, 20px);
+}
+
+nav > h2:last-child:hover {
+  color: #374151;
+  border-bottom: 2px solid #2563eb;
+  transform: translateY(-2px);
+}
+
+.main {
+  display: flex;
+  min-height: 100vh;
+  padding-top: 65px;
+}
+.sidebar-footer img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #eaeaea;
+  transition: all 0.3s ease;
+  /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); */
+}
+.sidebar-footer {
+  display: flex;
+  box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.1);
+}
+.sidebar-footer h2 {
+  margin-left: 12px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #374151;
+  transition: color 0.2s ease;
+  padding-top: 8px;
+}
+.sidebar-footer img {
+  margin-left: 20px;
+}
+
+.sidebar {
+  width: 280px;
+  height: calc(100vh - 65px);
+  background-color: #ffffff;
+  border-right: 1px solid #eaeaea;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 24px 0;
+  position: fixed;
+  top: 65px;
+  transition: transform 0.3s ease;
+}
+.sidebar ul li:hover a {
+  color: var(--primary);
+}
+
+.sidebar ul li a {
+  color: var(--text-primary);
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  color: inherit;
+  display: block;
+  width: 100%; /* Make link cover entire <li> */
+  height: 100%;
+  /* background-color: #1e293b; */
+  /* padding: 12px 16px; */
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+    width: 240px;
+  }
+
+  .sidebar.active {
+    transform: translateX(0);
+  }
+}
+
+.sidebar > ul {
+  list-style: none;
+  padding: 0 16px;
+}
+
+.sidebar > ul > li {
+  font-size: 16px;
+  padding: 12px 16px;
+  margin: 8px 0;
+  border-radius: 8px;
+  color: #374151;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.sidebar > ul > li:hover {
+  background-color: #eef2ff;
+  color: #2563eb;
+  transform: translateX(4px);
+}
+
+.content {
+  margin-left: 280px;
+  padding: 24px;
+  width: 100%;
+  min-height: calc(100vh - 65px);
+  background-color: #f9fafb;
+  overflow-y: auto;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+@media (max-width: 768px) {
+  .content {
+    margin-left: 0;
+    padding: 16px;
+  }
+}
+.insert {
+  width: 100%; /* Full width */
+  max-width: 600px;
+  height: 100%;
+  /* padding: 20px; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.insert-element {
+  background: #ffffff; /* White background */
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Box shadow */
+  width: 450px;
+  width: 100%;
+  /* height: 100%; */
+  justify-content: center;
+  align-items: center;
+}
+
+.insert-element h2 {
+  font-size: 24px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 15px;
+  color: #2563eb; /* Blue color for headings */
+}
+
+.input-element {
+  margin-bottom: 20px;
+}
+
+.input-element label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.input-element input {
+  display: flex;
+  align-items: center;
+  border: 1px solid #2563eb; /* Blue border */
+  border-radius: 5px;
+  padding: 10px;
+  background: transparent;
+  color: #333;
+  font-size: 14px;
+  outline: none;
+  box-sizing: border-box;
+  width: 100%;
+  height: 40px;
+}
+
+.input-element button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #2563eb; /* Blue button */
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.input-element button:hover {
+  background-color: #0056b3;
+  transform: translateY(2px);
+}
+#generator {
+  width: 100px;
+  height: 40px;
+  border-radius: 40px;
+  position: absolute;
+  top: 56.4%;
+  right: 6%;
+}
+#generator:hover {
+  transform: translateY(2px);
+}

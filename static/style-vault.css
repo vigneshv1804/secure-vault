@@ -1,0 +1,327 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+  overflow-x: hidden;
+  background-color: #f9fafb;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 65px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #eaeaea;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 32px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+}
+
+nav > h2 {
+  color: #2563eb;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  font-size: clamp(16px, 2vw, 20px);
+}
+
+nav > h2:last-child:hover {
+  color: #374151;
+  border-bottom: 2px solid #2563eb;
+  transform: translateY(-2px);
+}
+
+.main {
+  display: flex;
+  min-height: 100vh;
+  padding-top: 65px;
+}
+.sidebar ul li a {
+  color: #1e293b;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  width: 100%; /* Make link cover entire <li> */
+  height: 100%;
+}
+.sidebar ul li:hover a {
+  color: #2563eb;
+}
+.sidebar-footer img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-left: 20px;
+  border: 2px solid #eaeaea;
+  transition: all 0.3s ease;
+}
+.sidebar-footer {
+  display: flex;
+  box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.1);
+}
+.sidebar-footer h2 {
+  margin-left: 12px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #374151;
+  transition: color 0.2s ease;
+  padding-top: 8px;
+}
+
+.sidebar {
+  width: 280px;
+  height: calc(100vh - 65px);
+  background-color: #ffffff;
+  border-right: 1px solid #eaeaea;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 24px 0;
+  position: fixed;
+  top: 65px;
+  transition: transform 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+    width: 240px;
+  }
+
+  .sidebar.active {
+    transform: translateX(0);
+  }
+}
+
+.sidebar > ul {
+  list-style: none;
+  padding: 0 16px;
+}
+
+.sidebar > ul > li {
+  font-size: 16px;
+  padding: 12px 16px;
+  margin: 8px 0;
+  border-radius: 8px;
+  color: #374151;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.sidebar > ul > li:hover {
+  background-color: #eef2ff;
+  color: #2563eb;
+  transform: translateX(4px);
+}
+
+.content {
+  margin-left: 280px;
+  padding: 24px;
+  width: 100%;
+  min-height: calc(100vh - 65px);
+  background-color: #f9fafb;
+  overflow-y: auto;
+}
+
+@media (max-width: 768px) {
+  .content {
+    margin-left: 0;
+    padding: 16px;
+  }
+}
+
+.element {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  border: 1px solid #eaeaea;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.data {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 1024px) {
+  .data {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+.element h3 {
+  color: #374151;
+  font-size: 15px;
+  font-weight: 500;
+  min-width: 200px;
+}
+
+.element h3:first-child {
+  color: #2563eb;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.ordered-button {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+@media (max-width: 480px) {
+  .ordered-button {
+    flex-wrap: wrap;
+    gap: 12px; /* Slightly smaller gap on mobile for better layout */
+  }
+}
+/* Modern Button Base Styles */
+.element button {
+  padding: 8px 16px;
+  height: 38px;
+  min-width: 100px;
+  border: none;
+  font-size: 14px;
+  border-radius: 10px;
+  font-weight: 500;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  letter-spacing: 0.3px;
+  text-transform: capitalize;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Copy Button */
+.element .copy {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  color: white;
+}
+
+.element .copy:hover {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+/* Reveal Button */
+.element .reveal {
+  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+  color: white;
+}
+
+.element .reveal:hover {
+  background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+}
+
+/* Edit Button */
+.element .edit {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+}
+
+.element .edit:hover {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
+}
+
+/* Delete Button */
+.element .delete {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: white;
+}
+
+.element .delete:hover {
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+}
+
+/* Active State for All Buttons */
+.element button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Focus State */
+.element button:focus {
+  transform: translateY(2px);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.3);
+}
+
+.ordered-button a {
+  display: block;
+  width: auto;
+  color: #ffffff;
+  outline: none;
+  text-decoration: none;
+}
+
+/* Optional: Loading State */
+.element button.loading {
+  opacity: 0.8;
+  cursor: wait;
+  position: relative;
+}
+
+.element button.loading::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: button-loading-spinner 0.8s linear infinite;
+}
+
+@keyframes button-loading-spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Ordered Button Container Enhancement */
+.ordered-button {
+  display: flex;
+  gap: 12px;
+  padding: 4px;
+}
+
+@media (max-width: 480px) {
+  .element button {
+    min-width: auto;
+    flex: 1;
+  }
+
+  .ordered-button {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+}

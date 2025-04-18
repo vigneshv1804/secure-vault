@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Secure Vault</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{{url_for('static',filename='style-gen.css')}}" />
+  </head>
+  <body>
+    <nav>
+      <h2>SECURE VAULT</h2>
+      <h2>About Us</h2>
+    </nav>
+    <div class="main">
+      <div class="sidebar">
+        <ul>
+          <li><a href="{{url_for('vault')}}">Vault</a></li>
+          <li><a href="{{url_for('insert')}}">Insert Password</a></li>
+          <li><a href="{{url_for('generator')}}">Generator</a></li>
+          <li><a href="{{url_for('logout')}}">Logout</a></li>
+        </ul>
+        <div class="sidebar-footer">
+          <img
+            src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+            alt="Profile Picture"
+          />
+          <h2>{{session["username"]}}</h2>
+        </div>
+      </div>
+      <div class="content">
+        <div class="container">
+          <h1>Random Password Generator</h1>
+          <p class="title-des">
+            Create strong and secure passwords to keep your account safe online.
+          </p>
+
+          <div class="password-area">
+            <input type="text" id="password" value="" readonly />
+            <!-- <input type="text" id="password" value="{{ generated_password }}" readonly /> -->
+
+            <span id="copy-btn" class="copy-btn">Copy</span>
+            <span class="indicator" id="indicator">Very strong</span>
+          </div>
+
+            <div class="options">
+                <div class="length">
+                    <label for="length">Password Length:</label>
+                    <input type="range" id="length" min="8" max="32" value="15" />
+                    <span id="length-value">15</span>
+                </div>
+            </div>
+
+            <div class="characters">
+              <p>Characters Used:</p>
+              <label
+                ><input type="checkbox" id="uppercase" checked /> ABC</label
+              >
+              <label><input type="checkbox" id="lowercase" /> abc</label>
+              <label><input type="checkbox" id="numbers" checked /> 123</label>
+              <label><input type="checkbox" id="symbols" checked /> #$&</label>
+            </div>
+
+            <button id="generate">Generate Password</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="{{url_for('static',filename='script-gen.js')}}"></script>
+  </body>
+</html>

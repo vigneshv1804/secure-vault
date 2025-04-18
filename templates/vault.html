@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Secure Vault</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="{{url_for('static',filename='style-vault.css')}}"
+    />
+  </head>
+  <body>
+    <nav>
+      <h2>SECURE VAULT</h2>
+      <h2>About Us</h2>
+    </nav>
+    <div class="main">
+      <div class="sidebar">
+        <ul>
+          <li><a href="{{url_for('vault')}}">Vault</a></li>
+          <li><a href="{{url_for('insert')}}">Insert Password</a></li>
+          <li><a href="{{url_for('generator')}}">Generator</a></li>
+          <li><a href="{{url_for('logout')}}">Logout</a></li>
+        </ul>
+        <div class="sidebar-footer">
+          <img
+            src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+            alt="Profile Picture"
+          />
+          <h2><a href="" style="text-decoration: none;">{{session["username"]}}</a></h2>
+        </div>
+      </div>
+      <div class="content">
+        {% if(data) %} {% for datas in data %}
+        <div class="element">
+          <div class="data">
+            <h3>{{datas["site_name"]}}</h3>
+            <h3>{{datas["site_email"]}}</h3>
+            <!-- <h3 class="password">{{datas["site_password"]}}</h3> -->
+            <h3 class="password">*****************</h3>
+          </div>
+          <div class="ordered-button">
+            <button class="copy" data-password="{{ datas.site_password }}">copy</button>
+            <button class="reveal" data-password="{{ datas.site_password }}">reveal</button>
+            <button class="edit">
+              <a href="{{ url_for('edit', id=datas.id) }}">edit</a>
+            </button>
+            <button class="delete">
+              <a href="{{ url_for('delete', id=datas.id) }}">delete</a>
+            </button>
+          </div>
+        </div>
+        {% endfor %} {% else %}
+        <div class="element">
+          <h3>No Password is Available</h3>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+    <script language="javascript">
+      document.addEventListener("DOMContentLoaded", function () {
+        // Handle reveal
+        const revealButtons = document.querySelectorAll(".reveal");
+        revealButtons.forEach((button) => {
+          button.addEventListener("click", function () {
+            const parentElement = this.closest(".element");
+            const passwordField = parentElement.querySelector(".password");
+
+            const currentState = this.textContent.trim().toLowerCase();
+            const realPassword = this.getAttribute("data-password");
+
+            if (currentState === "reveal") {
+              passwordField.textContent = realPassword;
+              this.textContent = "hide";
+            } else {
+              passwordField.textContent = "*****************";
+              this.textContent = "reveal";
+            }
+          });
+        });
+
+        // Handle copy
+        const copyButtons = document.querySelectorAll(".copy");
+        copyButtons.forEach((button) => {
+          button.addEventListener("click", function () {
+            const password = this.getAttribute("data-password");
+            if (!password) {
+              alert("No password available to copy.");
+              return;
+            }
+
+            navigator.clipboard
+              .writeText(password)
+              .then(() => {
+                console.log("Password copied to clipboard!");
+                this.textContent = "copied";
+                setTimeout(() => {
+                  this.textContent = "copy";
+                }, 1000);
+              })
+              .catch((err) => {
+                console.error("Failed to copy:", err);
+                alert("Copy failed.");
+              });
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
