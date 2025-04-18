@@ -227,4 +227,4 @@ if __name__ == '__main__':
     # Initialize database tables when the app starts
     with app.app_context():
         init_db()
-    app.run(debug=True)
+    app.run()
